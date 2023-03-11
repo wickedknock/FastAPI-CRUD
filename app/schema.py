@@ -1,6 +1,8 @@
-from pydantic import BaseModel, Field, ValidationError, EmailStr, Extra
 from datetime import datetime
 from typing import Optional
+
+from pydantic import BaseModel, EmailStr, Extra, Field, ValidationError
+from pydantic.types import conint
 
 
 class Post(BaseModel):
@@ -51,3 +53,8 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[int] = None
+
+
+class Vote(BaseModel):
+    post_id: int
+    dir: conint(le=1)
